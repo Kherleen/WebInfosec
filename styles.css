@@ -19,7 +19,7 @@
     --badge-age: #ffa07a;
     --badge-sexual-orientation: #ba55d3; 
     --badge-appearance-based: #fffacd;
-    --badge-default: #cccccc; 
+    --badge-default: #cccccc;
 }
 
 body.dark-mode {
@@ -41,13 +41,13 @@ body.dark-mode {
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #e9ecef; 
+    background-color: #e9ecef; /* Neutral bg for desktop view */
     color: var(--text-color);
     line-height: 1.6;
     transition: background-color 0.3s, color 0.3s;
 }
 body.dark-mode {
-    background-color: #121212; 
+    background-color: #121212; /* Dark neutral bg for desktop */
 }
 
 .app-container {
@@ -71,13 +71,12 @@ body.dark-mode .app-container {
     padding: 20px;
     padding-bottom: 70px; /* Space for bottom nav */
     background-color: var(--secondary-bg);
-    min-height: calc(100vh - 60px - 60px); 
+    min-height: calc(100vh - 60px - 60px); /* Full height minus header and footer, if applicable */
     width: 100%;
 }
 body.dark-mode .page {
     background-color: var(--primary-bg);
 }
-
 /* Pages that are full-screen and manage their own padding */
 #login-page.page,
 #forgot-password-page.page,
@@ -88,16 +87,17 @@ body.dark-mode .page {
 }
 /* Chat page specific layout */
 #chat-page.page {
+    padding: 0; /* Remove default page padding */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; 
-    min-height: calc(80vh - 60px); 
+    justify-content: flex-start; /* Align chat panel to top, can be 'center' too */
+    min-height: calc(100vh - 60px); /* Full height minus main header */
 }
 
 
 .page.sub-page {
-    padding-bottom: 0px; /* Less bottom padding as no bottom nav usually */
+    padding-bottom: 20px; /* Less bottom padding as no bottom nav usually */
 }
 
 
@@ -195,7 +195,8 @@ body.dark-mode .auth-toggle {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 body.dark-mode .auth-toggle .toggle-btn.active {
-    background-color: var(--primary-bg); 
+    background-color: var(--secondary-bg); /* Or var(--primary-bg) if it looks better */
+}
 
 /* Generic styles for auth page inputs */
 .login-form-container input[type="email"],
@@ -203,7 +204,7 @@ body.dark-mode .auth-toggle .toggle-btn.active {
 .signup-form-container input[type="text"], /* For Full Name */
 .signup-form-container input[type="email"],
 .signup-form-container .password-wrapper,
-.forgot-password-form-container input[type="email"] { /* Added forgot password input here */
+.forgot-password-form-container input[type="email"] { 
     width: 100%;
     padding: 15px;
     border: 1px solid var(--border-color);
@@ -219,7 +220,7 @@ body.dark-mode .auth-toggle .toggle-btn.active {
 .signup-form-container input[type="text"]::placeholder,
 .signup-form-container input[type="email"]::placeholder,
 .signup-form-container .password-wrapper input::placeholder,
-.forgot-password-form-container input[type="email"]::placeholder { /* Added forgot password placeholder */
+.forgot-password-form-container input[type="email"]::placeholder { 
     color: var(--text-light);
 }
 
@@ -240,7 +241,7 @@ body.dark-mode .login-form-container .password-wrapper input::placeholder,
 body.dark-mode .signup-form-container input[type="text"]::placeholder,
 body.dark-mode .signup-form-container input[type="email"]::placeholder,
 body.dark-mode .signup-form-container .password-wrapper input::placeholder,
-body.dark-mode .forgot-password-form-container input[type="email"]::placeholder { 
+body.dark-mode .forgot-password-form-container input[type="email"]::placeholder { /* Added forgot password placeholder dark mode */
     color: var(--text-light);
 }
 
@@ -248,6 +249,7 @@ body.dark-mode .forgot-password-form-container input[type="email"]::placeholder 
     display: flex;
     align-items: center;
     position: relative;
+    /* Note: Padding, border, etc. are now applied to .password-wrapper itself by the generic styles above */
 }
 .password-wrapper input {
     flex-grow: 1;
@@ -256,11 +258,12 @@ body.dark-mode .forgot-password-form-container input[type="email"]::placeholder 
     background: transparent;
     font-size: 1em;
     color: var(--text-color);
+    padding: 0; /* Remove padding from input itself as wrapper has it */
 }
 .password-wrapper i {
     color: var(--text-light);
     cursor: pointer;
-    padding: 0 5px; 
+    padding: 0 5px; /* Keep padding for the icon click area */
 }
 
 .forgot-password {
@@ -289,20 +292,20 @@ body.dark-mode .forgot-password-form-container input[type="email"]::placeholder 
     background-color: var(--accent-color);
 }
 
-/* Forgot Password Page  */
+/* Forgot Password Page Specifics */
 #forgot-password-page {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color: var(--primary-bg); 
+    background-color: var(--primary-bg); /* This is the blue top area */
 }
 
 .forgot-password-header-title {
     font-size: 2.2em;
     font-weight: bold;
     color: var(--text-color);
-    padding: 60px 20px 40px 20px;
+    padding: 60px 20px 40px 20px; /* Match login title padding */
     text-align: center;
     width: 100%;
 }
@@ -329,9 +332,10 @@ body.dark-mode .forgot-password-form-container {
     font-size: 0.95em;
     color: var(--text-light);
     text-align: center;
-    margin-bottom: 5px;
+    margin-bottom: 5px; /* Reduced margin as gap handles spacing */
     line-height: 1.5;
 }
+/* Input styling for forgot password email is now covered by the generic auth input styles */
 
 .secondary-btn {
     background-color: var(--light-grey-bg);
@@ -365,7 +369,7 @@ body.dark-mode .secondary-btn:hover {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color: var(--primary-bg); 
+    background-color: var(--primary-bg); /* The light blue top area */
 }
 .signup-header-title {
     font-size: 2.5em;
@@ -386,12 +390,13 @@ body.dark-mode .signup-header-title {
     box-shadow: var(--card-shadow);
     display: flex;
     flex-direction: column;
-    gap: 20px; 
+    gap: 20px; /* Matches login form */
     flex-grow: 1;
 }
 body.dark-mode .signup-form-container {
-    background-color: var(--header-bg); 
+    background-color: var(--header-bg); /* Match login form container in dark mode */
 }
+/* Input styling for sign up page is now covered by the generic auth input styles */
 
 
 /* Header */
@@ -682,7 +687,7 @@ body.dark-mode .quote-card {
     background-color: transparent;
     border: none;
     text-align: center;
-    width: 90%; 
+    width: 90%; /* Adjusted width */
     max-width: 300px;
     margin-bottom: 0;
     padding: 5px;
@@ -890,7 +895,7 @@ body.dark-mode .reflection-feedback {
     flex-direction: column;
     width: 100%;
     max-width: 600px;
-    height: 75vh;       /* MODIFIED: Set a fixed height */
+    height: 75vh;       /*Add Set a fixed height */
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -907,7 +912,6 @@ body.dark-mode .chat-panel-wrapper {
     font-weight: 500;
     font-size: 1.1em;
     color: var(--text-color);
-    flex-shrink: 0; /* Prevent header from shrinking */
 }
 body.dark-mode .chat-panel-header {
     background-color: var(--header-bg);
@@ -922,7 +926,6 @@ body.dark-mode .chat-panel-header {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    /* min-height: 0; */ /* Helps flexbox calculate grow correctly if content is sparse or panel is very short */
 }
 
 .chat-message {
@@ -955,7 +958,6 @@ body.dark-mode .chat-message.bot {
     border-top: 1px solid var(--border-color);
     background-color: var(--secondary-bg);
     width: 100%;
-    flex-shrink: 0; /* Prevent input area from shrinking */
 }
 body.dark-mode .chat-input-area {
     background-color: var(--primary-bg);
@@ -1272,7 +1274,7 @@ body.dark-mode .notification-toggle-item:hover {
         max-width: 800px;
     }
     .login-form-container, .forgot-password-form-container, .signup-form-container { /* Added signup form container */
-        max-width: 600px;
+        max-width: 500px;
         margin-left: auto;
         margin-right: auto;
     }
@@ -1280,7 +1282,9 @@ body.dark-mode .notification-toggle-item:hover {
         width: 320px;
         left: -320px;
     }
-   
+    #chat-page .chat-panel-wrapper {
+        /* Max-width already controlled, behavior is fine */
+    }
 }
 
 @media (min-width: 1024px) {
@@ -1291,7 +1295,7 @@ body.dark-mode .notification-toggle-item:hover {
         max-width: 960px;
     }
     #chat-page .chat-panel-wrapper {
-        max-width: 700px; /* Increased max-width for larger screens for better use of space */
+        max-width: 700px;
     }
 }
 
@@ -1383,5 +1387,4 @@ body.dark-mode .dot {
 }
 body.dark-mode .active-dot, body.dark-mode .dot:hover {
   background-color: #6cbaff;
-}
 }
